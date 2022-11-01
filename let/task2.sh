@@ -8,11 +8,6 @@ for leteral in $*; do
 	i=$i+1
 done
 
-#while read input; do
-#	letters[$i]+="$input"
-#	i=$i+1
-#done
-
 #check input arguments
 if (( ${#letters[@]} == 0)); then
 	echo "z"
