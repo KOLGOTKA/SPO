@@ -31,11 +31,11 @@ over=0
 if (( $res/25 > 0 )); then
 	over=1
 fi
-final_code=$(( $res % 25 + 96))
+final_code=$(( $res % 26 + 96))
  
 #printf "\\$(printf '%03o' "$final_code")"
 if (( $over == 1)); then
-	printf "\\$(printf '%03o' "$(($final_code - 1))")"
+	printf "\\$(printf '%03o' "$final_code")"
 	echo " //overfilling"
 else {
 	printf "\\$(printf '%03o' "$final_code")"
