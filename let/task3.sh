@@ -4,12 +4,10 @@
 read -p "Please write your phrase: " -r
 read -p "Please write your shift: " -r shft
 declare -a phrase
-i=0
 
 #split the string into characters
 while IFS="" read -r -n 1 c; do
   phrase+=("$c")
-  i=$(($i + 1))
 done <<<$REPLY
 result=()
 
