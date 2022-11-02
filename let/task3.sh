@@ -28,7 +28,7 @@ for ((i = 0; i < ${#phrase[@]}; i++)); do
     final_code=$(($res % 26 + 64))
     #check registry
     if (($i % 2 != 0)); then
-      final_code=$(($final_code + 32)) #check this <<<<<<<<<<<<<<<<<<<<
+      final_code=$(($final_code + 32))
     fi
     #write letter
     result[$i]=$(printf "\\$(printf '%03o' "$final_code")")
