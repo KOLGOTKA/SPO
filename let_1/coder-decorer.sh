@@ -36,31 +36,32 @@ if [ $1 = "-c" ]; then
   done
 elif [ $1 = "-d" ]; then
   counter=0
+  flag=0
   for i in ${string[@]}; do
-    if (((($i == "0")) && (($flag != 1)))); then
-      counter=$counter+1
-    elif (((($i == "1")) && (($flag != 1)))); then
-      counter=$counter+1
-      flag=1
-    else
+    if ((flag)); then
+      if (($counter != 0)); then
+        str=$str$i
+        counter=$(($counter - 1))
+      fi
       if (($counter == 0)); then
         flag=0
-      else
-        binary_number+=($i)
-        counter=$counter-1
+        num=$(($str))
+        str=""
+        result=$result$(echo "ibase=2;$num" | bc)
+      fi
+    else
+      counter=$(($counter + 1))
+      if (($i == "1")); then
+        flag=1
       fi
     fi
-    if (( $counter == 0 )); then
-      result+=$((printf "ibase=2;${binary_number[@]}" | bc))
-
-      fi
   done
 else
   echo "unknown command (write -c to code and -d to decode)"
   exit 1
 fi
 for i in ${result[@]}; do
-    echo -n $i
-  done
+  echo -n $i
+done
 echo
 exit 0
